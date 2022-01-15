@@ -404,7 +404,11 @@ footer {
   .populer-logos {
     grid-template-columns: repeat(4, 1fr);
   }
+
   /* 6. collection section */
+  .collection .container {
+    width: 80%;
+  }
   .collec-items {
     grid-template-columns: repeat(1, 1fr);
   }
