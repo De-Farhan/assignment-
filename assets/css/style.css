@@ -5,8 +5,9 @@
 4. header section
 5. banner section
 6. collection section
-7. uniqe section
+7. news-letter section
 8. footer section
+9. responsive for devices
 ==================== :::====::: ==================== */
 
 /* =============::===========
@@ -27,6 +28,7 @@
 ================::=========== */
 :root {
   --primary-text: #e02c6d;
+  --transition-bg: #c7074d;
   --primary-bg: #e02c6d;
   --yellow: #fb8200;
   --white-text: #ffffff;
@@ -40,6 +42,7 @@
 
 body {
   font-family: "Sora", sans-serif;
+  font-size: calc(0.75rem + 0.3vw);
   font-weight: 400;
   color: var(--dark-text);
   background-color: var(--body-bg);
@@ -65,16 +68,16 @@ h4 {
   line-height: 1.5;
 }
 h1 {
-  font-size: 3.25rem;
+  font-size: calc(0.5rem + 3.5vw);
 }
 h2 {
-  font-size: 2.25rem;
+  font-size: calc(1rem + 3vw);
 }
 h3 {
-  font-size: 1.75rem;
+  font-size: calc(0.5rem + 1.5vw);
 }
 h4 {
-  font-size: 1.5rem;
+  font-size: calc(0.5rem + 1.25vw);
 }
 img {
   width: 100%;
@@ -82,13 +85,13 @@ img {
   display: block;
 }
 section {
-  margin-bottom: 6rem;
+  margin-bottom: calc(2rem + 4.5vw);
 }
 .section-title {
   text-align: center;
 }
 .section-title > h3 {
-  margin-bottom: 3.5rem;
+  margin-bottom: calc(1rem + 3vw);
 }
 .container {
   width: calc(100% - 166px);
@@ -108,6 +111,13 @@ section {
   position: relative;
   padding-right: 2.5rem;
   font-weight: 500;
+  transition: all linear 0.5s;
+}
+.btn > a:hover {
+  background-color: var(--transition-bg);
+}
+.btn-bgless > a:hover {
+  color: var(--transition-bg);
 }
 .btn > a > i,
 .btn-bgless > a > i {
@@ -149,6 +159,10 @@ section {
   font-weight: 600;
   color: var(--dark-text);
   text-transform: capitalize;
+  transition: all linear 0.5s;
+}
+.menu-item ul > li > a:hover {
+  color: var(--primary-text);
 }
 .menu-item ul > li:nth-of-type(5n) {
   font-size: 1.75rem;
@@ -161,7 +175,7 @@ section {
 5. banner section
 ================::=========== */
 .banner {
-  margin-top: 3rem;
+  margin-top: calc(1rem + 2.5vw);
 }
 .banner-content {
   display: flex;
@@ -181,6 +195,24 @@ section {
 .banner-content .banner-img img {
   width: 60%;
   margin: 0 auto;
+}
+
+.banner-content .banner-img::before {
+  animation: my-ani 10s infinite linear;
+}
+@keyframes my-ani {
+  0% {
+    top: 50%;
+  }
+  33% {
+    top: 60%;
+  }
+  66% {
+    top: 40%;
+  }
+  99% {
+    top: 50%;
+  }
 }
 .banner-content .banner-img::before,
 .banner-content .banner-img::after {
@@ -203,21 +235,22 @@ section {
 }
 
 .populer-logos {
-  display: flex;
-  justify-content: space-evenly;
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  grid-gap: 1.5rem;
   align-items: center;
-  margin-top: 6rem;
+  margin-top: calc(2rem + 4.5vw);
   padding: 1.5rem 0;
   border: 2px solid var(--white-extra-light);
   border-left: 0;
   border-right: 0;
 }
+.populer-logos .logo img {
+  width: 80%;
+}
 /* =============::===========
 6. collection section
 ================::=========== */
-.collection .container {
-  width: calc(100% - 300px);
-}
 .collec-items {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -234,7 +267,7 @@ section {
 }
 .collec-item .collec-item-body .item-price {
   display: inline-block;
-  font-size: 1.5rem;
+  font-size: calc(0.5rem + 1.15vw);
   font-weight: 500;
 }
 .collec-item .collec-item-body .rating {
@@ -249,8 +282,158 @@ section {
 }
 
 /* =============::===========
-7. uniqe section
+7. news-letter section
 ================::=========== */
+.news-letter {
+  background-color: rgba(245, 245, 245, 0.616);
+  padding: 3rem 0;
+  position: relative;
+}
+.news-letter::before {
+  width: calc(3rem + 20vw);
+  height: calc(3rem + 20vw);
+  background: url("../images/main-camera.png") no-repeat right;
+  background-size: contain;
+  background-position-y: 80%;
+  content: "";
+  position: absolute;
+  top: 50%;
+  right: 10%;
+  transform: translateY(-50%);
+}
+.news-letter-item .item-form .form {
+  width: 50%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border: 2px solid var(--white-extra-light);
+  border-radius: 1.5rem;
+  padding: 1rem 1.75rem;
+  margin-top: 2rem;
+  box-shadow: 2px 2px 30px 0 rgba(0, 0, 0, 0.2);
+}
+.news-letter-item .item-form .form input {
+  flex-grow: 1;
+  background-color: transparent;
+}
+.news-letter-item .item-form .form button,
+.news-letter-item .item-form .form input,
+.news-letter-item .item-form .form input:focus {
+  border: none;
+  outline: none;
+  font-size: 1rem;
+  font-weight: 500;
+}
+.news-letter-item .item-form .form button {
+  position: relative;
+  cursor: pointer;
+  font-weight: 600;
+  color: var(--primary-text);
+  padding-right: 1.25rem;
+  background-color: transparent;
+  transition: all linear 0.5s;
+}
+.news-letter-item .item-form .form button:hover {
+  color: var(--transition-bg);
+}
+.news-letter-item .item-form .form button i {
+  font-size: 1.25rem;
+  position: absolute;
+  top: 50%;
+  right: 0;
+  transform: translateY(-50%);
+}
+
 /* =============::===========
 8. footer section
 ================::=========== */
+footer {
+  background-color: var(--footer-bg);
+  padding: 4rem 0;
+  text-align: center;
+}
+.footer-content .footer-title,
+.footer-content > p {
+  color: var(--white-text);
+}
+.footer-content > p {
+  margin: 1.25rem 0;
+}
+.footer-content .footer-icons > a {
+  margin-right: 1rem;
+}
+.footer-content .footer-icons > a > i {
+  width: 2rem;
+  height: 2rem;
+  border-radius: 50%;
+  color: var(--white-text);
+  background-color: rgba(217, 219, 225, 0.2);
+  text-align: center;
+  line-height: 2rem;
+  font-size: 1rem;
+  transition: all linear 0.5s;
+}
+.footer-content .footer-icons > a:hover i {
+  background-color: var(--transition-bg);
+}
+
+/* =============::===========
+9. responsive for devices
+================::=========== */
+
+/* ====== responsive mobile device ====== */
+@media screen and (max-width: 767px) {
+  /* 4. header section */
+  .menu-wrapper {
+    flex-direction: column;
+  }
+  /* 5. banner section */
+  .banner-content {
+    flex-direction: column-reverse;
+  }
+  .banner-content .banner-details {
+    width: 100%;
+    order: 2;
+    text-align: center;
+    margin-top: 1.5rem;
+  }
+  .banner-content .banner-img {
+    width: 100%;
+    order: 2;
+  }
+  .populer-logos {
+    grid-template-columns: repeat(4, 1fr);
+  }
+  /* 6. collection section */
+  .collec-items {
+    grid-template-columns: repeat(1, 1fr);
+  }
+  /* 7. news-letter section */
+  .news-letter-item .item-form .form {
+    width: 100%;
+  }
+}
+/* ====== responsive tablet device ====== */
+@media screen and (min-width: 768px) and (max-width: 1023px) {
+  /* 4. header section */
+  .menu-wrapper {
+    flex-direction: column;
+  }
+
+  /* 6. collection section */
+  .collec-items {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  /* 7. news-letter section */
+  .news-letter-item .item-form .form {
+    width: 70%;
+  }
+}
+
+/* ====== responsive desktop device ====== */
+@media screen and (min-width: 1024px) {
+  /* 6. collection section */
+  .collec-items {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
